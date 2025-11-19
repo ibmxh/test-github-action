@@ -1,0 +1,30 @@
+name: Node.js CI Demo
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 拉取代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 设置 Node.js 版本
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # 安装依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 运行测试
+      - name: Run tests
+        run: npm test
